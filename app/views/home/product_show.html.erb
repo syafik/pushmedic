@@ -1,0 +1,53 @@
+<hgroup class="page-head">
+  <h2>Product <span><%= @product.title %></span></h2>
+  <h5>Lorem ipsum dolor sit amet, consectetuer </h5>
+</hgroup>
+
+<div id="container" class="clearfix">
+
+<div id="content">
+  <article id="post-example" class="hentry clearfix">
+
+	<header>
+	  <h1 class="post-title">
+		<a href="#"><%= @product.title.titleize %></a>
+	  </h1>
+
+	  <div class="post-thumb">
+		<a href="<%= @product.image(:big) %>" title="Latest Health Lessons" class="pretty-photo">
+		  <%= image_tag(@product.image(:big), alt: @product.title ) %>
+		</a>
+	  </div>
+
+	</header>
+
+	<p><%= @product.description %></p>
+
+  </article>
+
+</div>
+
+<aside id="sidebar">
+
+  <section class="widget">
+	<h3 class="title">Recent Items</h3>
+
+	<div class="sidebar-post clearfix">
+	  <% @random_product.each do |random| %>
+		<div style="clear: both;">
+		  <%= link_to product_show_path(random) do %>
+			<%= image_tag(random.image(:thumb), size: "52x38") %>
+		  <% end %>
+		  <div class="sidebar-post-text">
+			<%= link_to random.title, product_show_path(random) %>
+			<span class="date"><%= random.updated_at.strftime("%B %d, %Y ") %></span>
+		  </div>
+		</div>
+	  <% end %>
+	</div>
+
+  </section>
+
+</aside>
+
+</div>

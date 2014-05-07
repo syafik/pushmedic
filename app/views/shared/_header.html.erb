@@ -1,0 +1,33 @@
+<!-- Website Logo Place -->
+<div id="logo-container">
+  <a href="index.html" class="logo"  title="Pushmedic">
+	<img src="/assets/pushmedic-logo.png" size="20x20" alt="PUSHMEDIC">
+  </a>
+</div>
+
+<ul class="social-nav">
+  <li class="facebook"><a target="_blank" href="#"></a></li>
+  <li class="twitter"><a target="_blank" href="#"></a></li>
+  <li class="skype"><a target="_blank" href="#"></a></li>
+  <li class="google"><a target="_blank" href="#"></a></li>
+  <li class="phone"><span> +62 226001425</span></li>
+</ul>
+
+<nav class="main-nav clearfix">
+
+  <div class="menu-div">
+	<ul>
+	  <li><%= link_to "Home", root_path %></li>
+	  <li><%= link_to "About Us", about_path %></li>
+	  <li><%= link_to "Product", product_path %></li>
+	  <li><%= link_to "Contact Us", contact_path %></li>
+	</ul>
+  </div>
+
+  <form method="get" action="#" id="topsearch">
+	<p>
+	  <input type="text" placeholder="Search" name="s" id="tsearch">
+	  <input type="submit" id="topsubmit" value="">
+	</p>
+  </form>
+</nav>

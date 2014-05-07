@@ -1,0 +1,119 @@
+<%= content_for :page_head do %>
+  <hgroup class="page-head">
+	<h2>Contact <span>Us</span></h2>
+	<h5></h5>
+  </hgroup>
+<% end %>
+
+<% if flash[:notice] %>
+  <p class="info">
+	<%= flash[:notice] %>
+  </p>
+<% end %>
+
+<div id="content">
+  <div class="map-container clearfix">
+	<div id="map_canvas"></div>
+  </div>
+
+  <section class="widget">
+	<h3 class="title quick-call">Quick Contact</h3>
+	<div class="contact-widget">
+	  <p>
+		<strong>Work    :</strong> +62 226001425<br>
+		<strong>Cell    :</strong> +62 226001425<br>
+		<strong>Support :</strong> ahmadfirman88@gmail.com<br>
+	  </p>
+	  <hr>
+	</div>
+
+	<h3 class="title quick-call">Our Address</h3>
+	<div class="contact-widget">
+	  <p>
+		<strong>Kompleks Melong Green Garden / Jalan Mig 3 No. 1</strong><br>
+		<strong>Cimahi, Jawa Barat, Indonesia</strong><br>
+		<strong>(6222) 6001425 / ahmadfirman88@gmail.com</strong><br>
+	  </p>
+	  <hr>
+	</div>
+  </section>
+  <p></p>
+
+</div>
+
+<aside id="sidebar">
+  <section class="widget">
+	<div class="appointment">
+	  <div class="header">
+		<h2>Make an Appointment</h2>
+		<h3 class="number">+62 226001425</h3>
+		<span class="or">OR</span>
+	  </div>
+	  <%= form_for(@message, url: send_message_path, html: {id: "appoint-form", novalidate: "novalidate"}) do |f| %>
+	  	<p>
+		  <label class="display-ie8" for="apo_name">Full Name</label>
+		  <%= f.text_field :name, class: "required", placeholder: "Full Name", title: "* Please enter your Full Name" %>
+		</p>
+		<p>
+		  <label class="display-ie8" for="apo_phone">Phone Number</label>
+		  <%= f.text_field :phone, class: "required", placeholder: "Phone Number", title: "* Please enter your Phone Number" %>
+		</p>
+		<p>
+		  <label class="display-ie8" for="apo_email">Email Address</label>
+		  <%= f.text_field :email, class: "email required", placeholder: "Email Address", title: "* Please enter valide Email Address" %>
+		</p>
+		<p>
+		  <label class="display-ie8" for="apo_date">Message</label>
+		  <%= f.text_area :body, class: "message required", cols: "30", rows: "5", placeholder: "Message", title: "* Please enter your message" %>
+		</p>
+
+		<p>
+		  <input type="submit" value="Submit Request" class="readmore">
+		  <img src="/assets/loading.gif" id="apo-loader" alt="Loader">
+		</p>
+		<p id="apo-message-sent"></p>
+		<div class="error-container"></div>
+	  <% end %>
+	</div>
+  </section>
+</aside>
+
+
+<%= content_for :javascripts do %>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript">
+
+	function initialize()
+	{
+	  var geocoder  = new google.maps.Geocoder();
+	  var map;
+	  var latlng = new google.maps.LatLng(-6.9227569, 107.5632968);
+	  var infowindow = new google.maps.InfoWindow();
+	  var myOptions = {
+		zoom: 15,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+
+	  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	  geocoder.geocode( { 'location': latlng },
+			  function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK)
+				{
+				  map.setCenter(results[0].geometry.location);
+				  var marker = new google.maps.Marker({
+					map: map,
+					position: results[0].geometry.location
+				  });
+				}
+				else
+				{
+				  alert("Geocode was not successful for the following reason: " + status);
+				}
+			  });
+	}
+	initialize();
+
+  </script>
+
+<% end %>

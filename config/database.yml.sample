@@ -1,0 +1,19 @@
+development: &development
+  adapter: postgresql
+  database: pushmedic_development
+  username:
+  password:
+  schema_search_path: public
+  min_messages: warning
+
+test:
+  <<: *development
+  database: pushmedic_development
+
+production:
+  adapter: mysql2
+  database:
+  username:
+  password:
+  schema_search_path: public
+  min_messages: warning

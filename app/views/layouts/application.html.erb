@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if IE 7]>    <html class="ie7" > <![endif]-->
+<!--[if IE 8]>    <html class="ie8" > <![endif]-->
+<!--[if IE 9]>    <html class="ie9" > <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-US"> <!--<![endif]-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Pushmedic</title>
+
+  <!-- FAVICON -->
+  <link rel="shortcut icon" href="/assets/favicon.png.png" />
+
+  <!-- Style Sheet-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,700,300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag :application %>
+
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="/assets/html5.js"></script>
+  <![endif]-->
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+	<header id="header">
+	  <%= render partial: "/shared/header" %>
+	</header>
+
+	<%= yield :slider %>
+	<%= yield :page_head %>
+
+	<div id="container" class="clearfix">
+	  <%= yield %>
+	  <div id="content" class="full-width"></div>
+	</div>
+
+	<div id="footer-bottom-wrapper">
+	  <div id="footer-bottom">
+		<p class="copyrights">© Copyright 2012. All Rights Reserved by pushjaw.com</p>
+	  </div>
+	</div>
+
+  </div>
+
+  <%= javascript_include_tag :application %>
+  <%= yield :javascripts %>
+  <a href="#top" id="scroll-top"></a>
+
+</body>
+</html>
